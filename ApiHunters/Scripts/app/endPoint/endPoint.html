@@ -1,0 +1,36 @@
+﻿<h2>Enter the API EndPoint..</h2>
+<p>Call you local API Endpoints</p>
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Enter the API Endpoint to Test..."/>
+            <span class="input-group-btn">
+                <button class="btn btn-success" id="Hit" ng-click="HitApi()" type="button">Go!</button>
+            </span>
+        </div>
+    </div>
+</div>
+        <br />
+        <br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            <li class="{{headerActive}}"><a ng-click="SelectTab(1)" ng-model="value">Headers</a></li>
+            <li class="{{requestActive}}"><a ng-click="SelectTab(2)" ng-model="value">Request Body</a></li>
+            <li class="{{responseActive}}"><a ng-click="SelectTab(3)" ng-model="value">Response Body</a></li>
+        </ul>
+    </div>
+    <div class="panel-body">
+        <div ng-if="value==1">
+            <div ng-include="'Scripts/app/endPoint/Header.html'"></div>
+        </div>
+        <div ng-if="value==2">
+            <div ng-include="'Scripts/app/ResponseBody/responseBody.html'"></div>
+        </div>
+        <div ng-if="value==3">
+            <div ng-include="'Scripts/app/ResponseBody/requestBody.html'"></div>
+        </div>
+    </div>
+</div>
+

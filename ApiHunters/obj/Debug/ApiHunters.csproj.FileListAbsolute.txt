@@ -79,3 +79,4 @@ c:\users\mkarki\documents\visual studio 2015\Projects\ApiHunter\ApiHunters\bin\M
 c:\users\mkarki\documents\visual studio 2015\Projects\ApiHunter\ApiHunters\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 c:\users\mkarki\documents\visual studio 2015\Projects\ApiHunter\ApiHunters\obj\Debug\ApiHunters.dll
 c:\users\mkarki\documents\visual studio 2015\Projects\ApiHunter\ApiHunters\obj\Debug\ApiHunters.pdb
+C:\Users\MKarki\documents\visual studio 2015\Projects\ApiHunter\ApiHunters\obj\Debug\ApiHunters.csprojResolveAssemblyReference.cache

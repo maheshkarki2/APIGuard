@@ -5,7 +5,7 @@
                 <div data-ng-repeat="choice in choices">
                     <div class="row">
                         <div class="col-md-2">
-                            <select class="form-control">
+                            <select class="form-control" ng-model="choices[$index].headerText">
                                 <option>Authentication</option>
                                 <option>Data-Type</option>
                                 <option>JSON/URL-Encoded</option>
@@ -13,7 +13,7 @@
                         </div>
 
                         <div class="col-md-8">
-                            <input type="text" ng-model="choice.name" name="" placeholder="Enter header data" class="form-control" />
+                            <input type="text"  name="" placeholder="Enter header data" class="form-control" ng-model="choices[$index].headerValue"/>
 
                         </div>
                         <span class="glyphicon glyphicon-minus" ng-click="removeChoice()"></span>

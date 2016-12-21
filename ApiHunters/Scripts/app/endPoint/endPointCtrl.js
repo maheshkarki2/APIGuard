@@ -19,27 +19,29 @@
 	    $scope.customeHeaders = { authTokenHeader: null, authTokenValue: null };
 	    $scope.inputData = [];
 	    $scope.value = 1;
+	    $scope.rvalue = 2;
 	    $scope.headerActive = "active";
-	    $scope.requestActive = "inactive";
+	    $scope.requestActive = "active";
 	    $scope.responseActive = "inactive";
 	    $scope.HitApi=function()
 	    {
-	        $scope.customHeaders=$scope.ComposeHeader();
-	        var getRequest = salesService.getRequest($scope.url, null, $scope.customHeaders).$promise;
-	        getRequest.then(function (success) {
-	            $scope.JsonResponse = JSON.stringify(success, null, 2);
-	            SelectTab(3);
-	        },
-                function (error) {
-                    $scope.JsonResponse = JSON.stringify(error, null, 2);
-                    $scope.SelectTab(3);
-                });
+	        $scope.customHeaders = $scope.ComposeHeader();
+	        var result = salesService.getHttpRequest($scope.url, null, $scope.customeHeaders);
+	        //var getRequest = salesService.getRequest($scope.url, null, $scope.customHeaders).GET().$promise;
+	        //getRequest.then(function (success) {
+	        //    $scope.JsonResponse = JSON.stringify(success, null, 2);
+	        //    SelectTab(3);
+	        //},
+            //    function (error) {
+            //        $scope.JsonResponse = JSON.stringify(error, null, 2);
+            //        $scope.SelectTab(3);
+            //    });
 	    }
 
 	    function activate() { }
 
-	    $scope.choices = [{ id: 'choice1'}];
-
+	    //$scope.choices = [{ id: 'choice1'}];
+        $scope.choices=[];
 	    $scope.addNewChoice = function () {
 	        var newItemNo = $scope.choices.length + 1;
 	        $scope.choices.push({ 'id': 'choice' + newItemNo});
@@ -51,20 +53,13 @@
 	    };
 
 	    $scope.SelectTab = function (data) {
-	        $scope.value = data;
-	        if (data == 1) {
-	            $scope.headerActive = "active";
-	            $scope.requestActive = "inactive";
-	            $scope.responseActive = "inactive";
-	        }
+	        $scope.rvalue = data;
 	        if (data == 2) {
 	            $scope.requestActive = "active";
-	            $scope.headerActive = "inactive";
 	            $scope.responseActive = "inactive";
 	        }
 	        if (data == 3) {
 	            $scope.responseActive = "active";
-	            $scope.headerActive = "inactive";
 	            $scope.requestActive = "inactive";
 	        }
 	    };

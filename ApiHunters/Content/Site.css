@@ -17,4 +17,14 @@
     white-space: normal;
 }
 
+
+.nav nav-tabs {height:20px !important}
+
+.UrlTxt{
+    color:black;
+    font:Callibri;
+}
+clr{
+    color:#FCBDAF;
+}
 /* Set width on the form input elements since they're 100% wide by default */

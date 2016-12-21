@@ -4,28 +4,49 @@
     // register service as a factory
     angular.module('app').factory('salesService', salesServiceDef);
 
-    salesServiceDef.$inject = ['$resource'];
+    salesServiceDef.$inject = ['$resource', '$http'];
    
-    function salesServiceDef($resource) {
+    function salesServiceDef($resource,$http) {
         var salesService = {};
-        salesService.getRequest = getRequestService2;
+        salesService.getRequest = getRequestService;
         salesService.postRequest = PostRequestService;
+        salesService.getHttpRequest = getRequesthttp;
         function getRequestService(passurl,requestBody, customheaders)
         {
+            $http.defaults.headers.common.Authorization = customheaders.authTokenValue;
             return $resource(passurl,
                 null,
                 {
                     GET : {
                         method: 'GET',
-                        url:passurl,
-                        headers: { 'authorization': customheaders.authTokenValue }
+                        url:passurl
                     }
                 });
+        }
+
+        function getRequesthttp(passurl,requestBody, customheaders)
+        {
+            $http({
+                method: 'GET',
+                url: passurl,
+                headers:{'Authorization':customheaders.authTokenValue}
+                }).then(function Success(success) {
+                return success;
+            }, function Error(error) {
+                return error;
+            });
         }
        function getRequestService2(passurl, requestBody, customeheaders)
         {
             return $resource(passurl, null, {}, { headers: { 'Authorization': customeheaders.authTokenValue } }).get(null, null);                     
-        }
+       }
+
+       function getRequestService3(passurl, requestBody, customheaders)
+       {
+           $httpProvider.defaults.headers.get['Authorization'] = customheaders.authTokenValue;
+           return $resource(passurl, null, { get: { headers: { Authorization: customheaders.authTokenValue } } });
+       }
+        
         function PostRequestService(url, requestBody, headers) {
             return $resource(url,
                 { /*define params here ex- Id: '@Id' */ },
@@ -35,6 +56,17 @@
                         headers: { 'Authorization': customheaders.authTokenValue }
                     }
                 });
+        }
+
+        function getRequest5(passurl,requestBody, customheaders)
+        {
+            return $resource(passurl,
+                {id:'@id'},
+                {
+                    'query': { isArray: false },
+                    'getRequestFor': { 'method': 'GET', 'url': passurl, 'headers': {'Authorization':customheaders.authTokenValue}}
+                }
+                );
         }
 
         return salesService;

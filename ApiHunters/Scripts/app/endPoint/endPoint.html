@@ -2,45 +2,55 @@
 <p>Call you local API Endpoints</p>
 <br/>
 <div class="row">
-    <div class="col-md-12">
-        <div class="input-group" id="UrlTxt">
-            <input type="text" class="form-control UrlTxt" placeholder="Enter the API Endpoint to Test..." ng-model="url"/>
-            <span class="input-group-btn">
-                <button class="btn btn-success" id="Hit" ng-click="HitApi()" type="button">Go!</button>
-            </span>
-        </div>
-    </div>
+    <div class="col-md-12">            
+            <div class="input-group urltxtdiv" id="UrlTxt">
+                <span class="input-group-btn btn-group-justified">
+                    <select class="input-sm">
+                        <option ng-selected="true">GET</option>
+                        <option>POST</option>
+                        <option>PUT</option>
+                        <option>DELETE</option>
+                        <option>PATCH</option>
+                    </select>
+                </span>
+                    <input type="text" class="form-control UrlTxt" placeholder="Enter the API Endpoint to Test..." ng-model="url" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" id="Hit" ng-click="HitApi()" type="button">Go!</button>
+                    </span>
+            </div>
 </div>
-        <br />
-        <br />
-<div class="panel panel-primary">
-    <div class="panel-heading clr">
-        <ul class="nav nav-tabs clr">
-            <li class="active clr"><a ng-model="value"><strong>Headers</strong></a></li>
-        </ul>
-    </div>
-    <div class="panel-body">
-        <div ng-if="value==1">
-            <div ng-include="'Scripts/app/endPoint/Header.html'"></div>
-        </div>
-
-    </div>
-    <div class="panel-footer">
-        <div class="panel panel-default">
-                <ul class="nav nav-tabs">
-                    <li class="{{requestActive}}"><a ng-click="SelectTab(2)" ng-model="value"><strong>Request Body</strong></a></li>
-                    <li class="{{responseActive}}"><a ng-click="SelectTab(3)" ng-model="value"><strong>Response Body</strong></a></li>
-                </ul>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <ul class="nav nav-tabs navbar-inverse">
+                <li class="active"><a ng-model="value"><strong>Headers</strong></a></li>
+            </ul>
             <div class="panel-body">
-                <div ng-if="rvalue==2">
-                    <div ng-include="'Scripts/app/ResponseBody/responseBody.html'"></div>
+                <div ng-if="value==1">
+                    <div ng-include="'Scripts/app/endPoint/Header.html'"></div>
                 </div>
-                <div ng-if="rvalue==3">
-                    <div ng-include="'Scripts/app/ResponseBody/requestBody.html'"></div>
+            </div>
+            <div class="panel-footer">
+                <div class="panel panel-default">
+                    <ul class="nav nav-tabs navbar-header">
+                        <li class="{{requestActive}}"><a ng-click="SelectTab(2)" ng-model="value"><strong>Request Body</strong></a></li>
+                        <li class="{{responseActive}}"><a ng-click="SelectTab(3)" ng-model="value"><strong>Response Body</strong></a></li>
+                    </ul>
+
+                    <div class="panel-body">
+                        <div ng-if="rvalue==2">
+                            <div ng-include="'Scripts/app/ResponseBody/responseBody.html'"></div>
+                        </div>
+                        <div ng-if="rvalue==3">
+                            <div ng-include="'Scripts/app/ResponseBody/requestBody.html'"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 

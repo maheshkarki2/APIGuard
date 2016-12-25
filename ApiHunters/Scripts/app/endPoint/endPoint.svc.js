@@ -8,7 +8,7 @@
    
     function salesServiceDef($resource,$http) {
         var salesService = {};
-        salesService.getRequest = getRequestService;
+        salesService.getRequest = getRequestService3;
         salesService.postRequest = PostRequestService;
         salesService.getHttpRequest = getRequesthttp;
         function getRequestService(passurl,requestBody, customheaders)
@@ -43,8 +43,7 @@
 
        function getRequestService3(passurl, requestBody, customheaders)
        {
-           $httpProvider.defaults.headers.get['Authorization'] = customheaders.authTokenValue;
-           return $resource(passurl, null, { get: { headers: { Authorization: customheaders.authTokenValue } } });
+           return $resource(passurl, null, { 'get': { headers: { 'Authorization': customheaders.authTokenValue } } });
        }
         
         function PostRequestService(url, requestBody, headers) {

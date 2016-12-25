@@ -26,16 +26,16 @@
 	    $scope.HitApi=function()
 	    {
 	        $scope.customHeaders = $scope.ComposeHeader();
-	        var result = salesService.getHttpRequest($scope.url, null, $scope.customeHeaders);
-	        //var getRequest = salesService.getRequest($scope.url, null, $scope.customHeaders).GET().$promise;
-	        //getRequest.then(function (success) {
-	        //    $scope.JsonResponse = JSON.stringify(success, null, 2);
-	        //    SelectTab(3);
-	        //},
-            //    function (error) {
-            //        $scope.JsonResponse = JSON.stringify(error, null, 2);
-            //        $scope.SelectTab(3);
-            //    });
+	        //var result = salesService.getHttpRequest($scope.url, null, $scope.customeHeaders);
+	        var getRequest = salesService.getRequest($scope.url, null, $scope.customHeaders).get().$promise;
+	        getRequest.then(function (success) {
+	            $scope.JsonResponse = JSON.stringify(success, null, 2);
+	            SelectTab(3);
+	        },
+                function (error) {
+                    $scope.JsonResponse = JSON.stringify(error, null, 2);
+                    $scope.SelectTab(3);
+                });
 	    }
 
 	    function activate() { }

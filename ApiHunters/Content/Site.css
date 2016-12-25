@@ -24,7 +24,34 @@
     color:black;
     font:Callibri;
 }
-clr{
+.clr{
     color:#FCBDAF;
 }
+a,
+a label {
+    cursor: pointer;
+}
+.clplus,
+.clremove,
+.clddl
+{
+      cursor: pointer;
+}
+.clplusdiv:hover{
+    background-color:aquamarine;
+}
+.clplusdiv{
+    padding-left:0px;
+}
+.urltxtdiv
+{
+    padding-left:0px;
+}
+.uldiv:hover{
+    background-color:aquamarine;
+}
+.divSpan{
+    width:10px;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */

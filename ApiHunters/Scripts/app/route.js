@@ -25,7 +25,11 @@
                 url: '/Header',
                 templateUrl: 'Scripts/app/endPoint/Header.html',
                 controller: 'endPointCtrl'
-        });
+            }).
+            state('gridstack', {
+                url: '/gridstack',
+                templateUrl: 'Scripts/GridStackDemo/gridStack.html'
+            });
 
             $urlRouterProvider.otherwise('/login');
         }]);

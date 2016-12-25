@@ -5,12 +5,8 @@
     <div class="col-md-12">            
             <div class="input-group urltxtdiv" id="UrlTxt">
                 <span class="input-group-btn btn-group-justified">
-                    <select class="input-sm">
-                        <option ng-selected="true">GET</option>
-                        <option>POST</option>
-                        <option>PUT</option>
-                        <option>DELETE</option>
-                        <option>PATCH</option>
+                    <select class="input-sm" ng-model="selectedRequest" ng-options="request as request.requestKind for request in requestList">
+                          Type
                     </select>
                 </span>
                     <input type="text" class="form-control UrlTxt" placeholder="Enter the API Endpoint to Test..." ng-model="url" />

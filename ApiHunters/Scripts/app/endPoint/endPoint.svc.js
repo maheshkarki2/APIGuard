@@ -45,6 +45,10 @@
        {
            return $resource(passurl, null, { 'get': { headers: { 'Authorization': customheaders.authTokenValue } } });
        }
+        function PostRequestService(passurl, requestBody, customheaders)
+       {          
+           return $resource(passurl, null, { method: 'post' }, requestBody);
+       }
         
         function PostRequestService(url, requestBody, headers) {
             return $resource(url,

@@ -23,8 +23,13 @@
 	    $scope.headerActive = "active";
 	    $scope.requestActive = "active";
 	    $scope.responseActive = "inactive";
+
+	    $scope.requestList = [{ requestKind: 'GET' }, { requestKind: 'POST' }, { requestKind: 'PUT' }, { requestKind: 'DELETE' }];
+	    $scope.selectedRequest = $scope.requestList[0];
 	    $scope.HitApi=function()
 	    {
+	        if ($scope.selectedRequest.requestKind == "GET")
+                {
 	        $scope.customHeaders = $scope.ComposeHeader();
 	        //var result = salesService.getHttpRequest($scope.url, null, $scope.customeHeaders);
 	        var getRequest = salesService.getRequest($scope.url, null, $scope.customHeaders).get().$promise;
@@ -36,6 +41,19 @@
                     $scope.JsonResponse = JSON.stringify(error, null, 2);
                     $scope.SelectTab(3);
                 });
+	        }
+	        if ($scope.selectedRequest.requestKind == "POST")
+	        {
+	            var postRequest = salesService.postRequest($scope.url, null, null).save($scope.jsonRequest).$promise;
+	            postRequest.then(function (success) {
+	                $scope.JsonResponse = JSON.stringify(success, null, 2);
+	                SelectTab(3);
+	            },
+                function (error) {
+                    $scope.JsonResponse = JSON.stringify(error, null, 2);
+                    $scope.SelectTab(3);
+                });
+	        }
 	    }
 
 	    function activate() { }

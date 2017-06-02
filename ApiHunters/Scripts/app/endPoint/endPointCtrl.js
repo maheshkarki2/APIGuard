@@ -12,82 +12,83 @@
         , $http
         , $state
         , $staetParams
-        ,salesService) {
-	    $scope.title = 'apiEndpoint';
+        , salesService) {
+	    var vm = this;
+	    vm.title = 'apiEndpoint';
 
 	    activate();
-	    $scope.customeHeaders = { authTokenHeader: null, authTokenValue: null };
-	    $scope.inputData = [];
-	    $scope.value = 1;
-	    $scope.rvalue = 2;
-	    $scope.headerActive = "active";
-	    $scope.requestActive = "active";
-	    $scope.responseActive = "inactive";
+	    vm.customeHeaders = { authTokenHeader: null, authTokenValue: null };
+	    vm.inputData = [];
+	    vm.value = 1;
+	    vm.rvalue = 2;
+	    vm.headerActive = "active";
+	    vm.requestActive = "active";
+	    vm.responseActive = "inactive";
 
-	    $scope.requestList = [{ requestKind: 'GET' }, { requestKind: 'POST' }, { requestKind: 'PUT' }, { requestKind: 'DELETE' }];
-	    $scope.selectedRequest = $scope.requestList[0];
-	    $scope.HitApi=function()
+	    vm.requestList = [{ requestKind: 'GET' }, { requestKind: 'POST' }, { requestKind: 'PUT' }, { requestKind: 'DELETE' }];
+	    vm.selectedRequest = vm.requestList[0];
+	    vm.HitApi=function()
 	    {
-	        if ($scope.selectedRequest.requestKind == "GET")
+	        if (vm.selectedRequest.requestKind == "GET")
                 {
-	        $scope.customHeaders = $scope.ComposeHeader();
-	        //var result = salesService.getHttpRequest($scope.url, null, $scope.customeHeaders);
-	        var getRequest = salesService.getRequest($scope.url, null, $scope.customHeaders).get().$promise;
+	        vm.customHeaders = vm.ComposeHeader();
+	        //var result = salesService.getHttpRequest(vm.url, null, vm.customeHeaders);
+	        var getRequest = salesService.getRequest(vm.url, null, vm.customHeaders).get().$promise;
 	        getRequest.then(function (success) {
-	            $scope.JsonResponse = JSON.stringify(success, null, 2);
+	            vm.JsonResponse = JSON.stringify(success, null, 2);
 	            SelectTab(3);
 	        },
                 function (error) {
-                    $scope.JsonResponse = JSON.stringify(error, null, 2);
-                    $scope.SelectTab(3);
+                    vm.JsonResponse = JSON.stringify(error, null, 2);
+                    vm.SelectTab(3);
                 });
 	        }
-	        if ($scope.selectedRequest.requestKind == "POST")
+	        if (vm.selectedRequest.requestKind == "POST")
 	        {
-	            var postRequest = salesService.postRequest($scope.url, null, null).save($scope.jsonRequest).$promise;
+	            var postRequest = salesService.postRequest(vm.url, null, null).save(vm.jsonRequest).$promise;
 	            postRequest.then(function (success) {
-	                $scope.JsonResponse = JSON.stringify(success, null, 2);
+	                vm.JsonResponse = JSON.stringify(success, null, 2);
 	                SelectTab(3);
 	            },
                 function (error) {
-                    $scope.JsonResponse = JSON.stringify(error, null, 2);
-                    $scope.SelectTab(3);
+                    vm.JsonResponse = JSON.stringify(error, null, 2);
+                    vm.SelectTab(3);
                 });
 	        }
 	    }
 
 	    function activate() { }
 
-	    //$scope.choices = [{ id: 'choice1'}];
-        $scope.choices=[];
-	    $scope.addNewChoice = function () {
-	        var newItemNo = $scope.choices.length + 1;
-	        $scope.choices.push({ 'id': 'choice' + newItemNo});
+	    //vm.choices = [{ id: 'choice1'}];
+        vm.choices=[];
+	    vm.addNewChoice = function () {
+	        var newItemNo = vm.choices.length + 1;
+	        vm.choices.push({ 'id': 'choice' + newItemNo});
 	    };
 
-	    $scope.removeChoice = function () {
-	        var lastItem = $scope.choices.length - 1;
-	        $scope.choices.splice(lastItem);
+	    vm.removeChoice = function () {
+	        var lastItem = vm.choices.length - 1;
+	        vm.choices.splice(lastItem);
 	    };
 
-	    $scope.SelectTab = function (data) {
-	        $scope.rvalue = data;
-	        if (data == 2) {
-	            $scope.requestActive = "active";
-	            $scope.responseActive = "inactive";
+	    vm.SelectTab = function (data) {
+	        vm.rvalue = data;
+	        if (data === 2) {
+	            vm.requestActive = "active";
+	            vm.responseActive = "inactive";
 	        }
-	        if (data == 3) {
-	            $scope.responseActive = "active";
-	            $scope.requestActive = "inactive";
+	        if (data === 3) {
+	            vm.responseActive = "active";
+	            vm.requestActive = "inactive";
 	        }
 	    };
 
-	    $scope.ComposeHeader = function () {
-	        $scope.choices.forEach(function (data) {
-	            $scope.customeHeaders.authTokenHeader = 'Authorization';
-	            $scope.customeHeaders.authTokenValue = 'bearer '+data.headerValue;
+	    vm.ComposeHeader = function () {
+	        vm.choices.forEach(function (data) {
+	            vm.customeHeaders.authTokenHeader = 'Authorization';
+	            vm.customeHeaders.authTokenValue = 'bearer '+data.headerValue;
 	        });
-	        return $scope.customeHeaders;
+	        return vm.customeHeaders;
             
 	    };
 	}

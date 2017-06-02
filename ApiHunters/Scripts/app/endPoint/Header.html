@@ -1,9 +1,9 @@
 ﻿<div class="col-md-12"> 
         <div class="row">            
-                <div data-ng-repeat="choice in choices">
+                <div data-ng-repeat="choice in vm.choices">
                     <div class="row">
                         <div class="col-md-2">
-                            <select class="form-control input-sm clddl" ng-model="choices[$index].headerText">
+                            <select class="form-control input-sm clddl" ng-model="vm.choices[$index].headerText">
                                 <option>Authentication</option>
                                 <option>Data-Type</option>
                                 <option>JSON/URL-Encoded</option>
@@ -11,14 +11,14 @@
                         </div>
 
                         <div class="col-md-9">
-                            <input type="text"  name="" placeholder="Enter header data" class="form-control input-sm" ng-model="choices[$index].headerValue"/>
+                            <input type="text"  name="" placeholder="Enter header data" class="form-control input-sm" ng-model="vm.choices[$index].headerValue"/>
 
                         </div>
-                        <span class="glyphicon glyphicon-remove clremove" ng-click="removeChoice()"></span>                        
+                        <span class="glyphicon glyphicon-remove clremove" ng-click="vm.removeChoice()"></span>                        
                     </div>
                     </div>
             </div>
     <div class="col-md-1 clplusdiv">
-        <span class="glyphicon glyphicon-plus clplus" ng-click="addNewChoice()"><strong class="UrlTxt">Header</strong></span>
+        <span class="glyphicon glyphicon-plus clplus" ng-click="vm.addNewChoice()"><strong class="UrlTxt">Header</strong></span>
     </div>
 </div>
